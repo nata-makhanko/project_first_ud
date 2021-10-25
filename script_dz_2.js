@@ -37,7 +37,7 @@ function start() {
     }
 }
 
-start();
+//start();
 
 let nameFilm, scoreFilm;
 
@@ -63,7 +63,7 @@ function rememberMyFilms() {
     }
 }
 
-rememberMyFilms();
+//rememberMyFilms();
 
 function detectPersonalLevel() {
     if(personalMovieDB.count<10){
@@ -77,13 +77,39 @@ function detectPersonalLevel() {
     }
 }
 
-detectPersonalLevel();
+//detectPersonalLevel();
 
-function showMyDB() {
-    if (personalMovieDB.privat == false) {
+
+
+//мой неправильный варинат, нужно было создать переменную и потом уже добавлять в массис genres
+// function writeYourGenres () {
+//     for(let i=1;i<4;i++) { 
+//         personalMovieDB.genres.pull = +prompt(`Ваш любимый жанр под номером ${i}`);
+//     }
+// }
+
+//Правильный вариант второй задачи
+function writeYourGenres () {
+        for(let i=1;i<4;i++) { //начинаем с единицы, потому что пользователя не волнует, что нумерации в массиве с 0
+            let genres = prompt(`Ваш любимый жанр под номером ${i}`);
+            personalMovieDB.genres[i-1] = genres; //используем i-1, потому что в массивах нумерация с 0, если оставить i=1, то элемент под номером personalMovieDB.genres[0] - будет пустым
+        }
+    }
+
+writeYourGenres();
+
+//Первый вариант функции showMyDB
+// function showMyDB() {
+//     if (personalMovieDB.privat == false) {
+//         console.log(personalMovieDB);
+//     }
+// }
+// showMyDB();
+
+//Второй вариант функции showMyDB
+function showMyDB(hidden) {
+    if (!hidden) {
         console.log(personalMovieDB);
     }
 }
-
-
-showMyDB();
+showMyDB(personalMovieDB.privat);
